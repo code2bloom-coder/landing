@@ -1,0 +1,13 @@
+name: Keep contact form server awake
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping mail server
+        run: curl -s -o /dev/null -m 30 https://mail-kbl2.onrender.com/ || true
